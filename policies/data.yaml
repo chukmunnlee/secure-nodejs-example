@@ -1,0 +1,9 @@
+employees:
+- name: fred
+  level: 1
+- name: barney
+  level: 1
+- name: betty
+  level: 2
+- name: wilma
+  level: 3

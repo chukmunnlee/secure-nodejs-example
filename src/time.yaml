@@ -1,0 +1,62 @@
+openapi: "3.0.3"
+info:
+   title: time
+   version: "1.0"
+
+servers:
+- description: Development server
+  url: http://localhost:3000
+
+paths:
+   /time:
+      get:
+         description: Get time, for employees only
+         operationId: getTime
+         responses:
+            '200':
+               description: success
+               content:
+                  text/html:
+                     schema:
+                        $ref: "#/components/schemas/HTML"
+            '403':
+               description: not allowed
+               content:
+                  text/html:
+                     schema:
+                        $ref: "#/components/schemas/HTML"
+      post:
+         description: Set time, for employees and managers only
+         operationId: setTime
+         requestBody:
+            description: time format
+            content:
+               application/json:
+                  schema:
+                     $ref: "#/components/schemas/time"
+         responses:
+            '200':
+               description: success
+               content:
+                  text/html:
+                     schema:
+                        $ref: "#/components/schemas/HTML"
+            '403':
+               description: not allowed
+               content:
+                  text/html:
+                     schema:
+                        $ref: "#/components/schemas/HTML"
+
+components:
+   schemas:
+      HTML:
+         type: string
+      time:
+         type: object
+         properties:
+            tz:
+               type: string
+            time:
+               type: string
+         required: [ "tz", "time" ]
