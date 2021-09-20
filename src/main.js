@@ -52,7 +52,7 @@ const policy = (config) => {
 				if (!!r.result)
 					return next()
 				resp.status(403).type('text/html')
-					.render('errors', { errors: [ `Cannot POST to ${req.path}>` ]})
+					.render('errors', { errors: [ `Cannot ${req.method} to ${req.path}` ]})
 			})
 			.catch(error => {
 				resp.status(500).type('text/html')
